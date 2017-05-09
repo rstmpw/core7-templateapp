@@ -11,8 +11,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     bash <(curl -Ls https://raw.githubusercontent.com/rstmpw/docker/master/dist/install.sh)
+    /vagrant/provisioning/pgsql.sh
     /vagrant/provisioning/php-fpm.sh
-    /vagrant/provisioning/php-cli.sh
+    /vagrant/provisioning/core7-cli.sh
 	/vagrant/provisioning/nginx.sh
   SHELL
 
