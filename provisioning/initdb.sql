@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS core7;
+
+CREATE DATABASE core7
+    WITH OWNER = postgres
+    ENCODING = 'UTF8'
+    TABLESPACE = pg_default
+    LC_COLLATE = 'C'
+    LC_CTYPE = 'ru_RU.UTF-8'
+    CONNECTION LIMIT = -1;
+
+\c core7
+CREATE SCHEMA app;
+
+CREATE ROLE core7app
+    LOGIN
+    PASSWORD 'vagrant'
+    NOSUPERUSER
+    NOINHERIT
+    NOCREATEDB
+    NOCREATEROLE
+    NOREPLICATION;
+ALTER ROLE core7app IN DATABASE core7
+    SET search_path = app;
+
+ALTER SCHEMA app
+    OWNER TO core7app;
